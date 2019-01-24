@@ -1,0 +1,18 @@
+{
+  "generator-jhipster": {
+    "appsFolders": [
+      "blog",
+      "gateway",
+      "store"
+    ],
+    "directoryPath": "../",
+    "gatewayType": "zuul",
+    "clusteredDbApps": [],
+    "monitoring": "elk",
+    "consoleOptions": [
+      "zipkin"
+    ],
+    "serviceDiscoveryType": "eureka",
+    "jwtSecretKey": "NDk0ZDI2YjY2Yjg5OWJmNDRiZDBiMzNkNzBjNjA2NDgwYzU0YWQ2YThlNTg2MjEyMWMxM2Q0OGRmNDQ0MTExYTBmNDE3YjZhNWM1ZGJiMTZlZjFlYWEzZmVlMzU0Y2JhZDUyMg=="
+  }
+}
