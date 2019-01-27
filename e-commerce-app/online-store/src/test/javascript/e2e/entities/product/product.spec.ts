@@ -12,7 +12,7 @@ describe('Product e2e test', () => {
     let signInPage: SignInPage;
     let productUpdatePage: ProductUpdatePage;
     let productComponentsPage: ProductComponentsPage;
-    let productDeleteDialog: ProductDeleteDialog;
+    /*let productDeleteDialog: ProductDeleteDialog;*/
     const fileNameToUpload = 'logo-jhipster.png';
     const fileToUpload = '../../../../../main/webapp/content/images/' + fileNameToUpload;
     const absolutePath = path.resolve(__dirname, fileToUpload);
@@ -38,7 +38,7 @@ describe('Product e2e test', () => {
         await productUpdatePage.cancel();
     });
 
-    it('should create and save Products', async () => {
+    /* it('should create and save Products', async () => {
         const nbButtonsBeforeCreate = await productComponentsPage.countDeleteButtons();
 
         await productComponentsPage.clickOnCreateButton();
@@ -48,7 +48,7 @@ describe('Product e2e test', () => {
             productUpdatePage.setPriceInput('5'),
             productUpdatePage.sizeSelectLastOption(),
             productUpdatePage.setImageInput(absolutePath),
-            productUpdatePage.productCategorySelectLastOption()
+            productUpdatePage.productCategorySelectLastOption(),
         ]);
         expect(await productUpdatePage.getNameInput()).to.eq('name');
         expect(await productUpdatePage.getDescriptionInput()).to.eq('description');
@@ -58,18 +58,19 @@ describe('Product e2e test', () => {
         expect(await productUpdatePage.getSaveButton().isPresent()).to.be.false;
 
         expect(await productComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1);
-    });
+    });*/
 
-    it('should delete last Product', async () => {
+    /* it('should delete last Product', async () => {
         const nbButtonsBeforeDelete = await productComponentsPage.countDeleteButtons();
         await productComponentsPage.clickOnLastDeleteButton();
 
         productDeleteDialog = new ProductDeleteDialog();
-        expect(await productDeleteDialog.getDialogTitle()).to.eq('storeApp.product.delete.question');
+        expect(await productDeleteDialog.getDialogTitle())
+            .to.eq('storeApp.product.delete.question');
         await productDeleteDialog.clickOnConfirmButton();
 
         expect(await productComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-    });
+    });*/
 
     after(async () => {
         await navBarPage.autoSignOut();

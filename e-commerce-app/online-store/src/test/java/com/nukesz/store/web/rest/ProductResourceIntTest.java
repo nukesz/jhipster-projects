@@ -3,6 +3,7 @@ package com.nukesz.store.web.rest;
 import com.nukesz.store.StoreApp;
 
 import com.nukesz.store.domain.Product;
+import com.nukesz.store.domain.ProductCategory;
 import com.nukesz.store.repository.ProductRepository;
 import com.nukesz.store.service.ProductService;
 import com.nukesz.store.web.rest.errors.ExceptionTranslator;
@@ -112,6 +113,11 @@ public class ProductResourceIntTest {
             .size(DEFAULT_SIZE)
             .image(DEFAULT_IMAGE)
             .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE);
+        // Add required entity
+        ProductCategory productCategory = ProductCategoryResourceIntTest.createEntity(em);
+        em.persist(productCategory);
+        em.flush();
+        product.setProductCategory(productCategory);
         return product;
     }
 

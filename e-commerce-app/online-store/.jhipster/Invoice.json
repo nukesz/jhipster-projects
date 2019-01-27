@@ -1,20 +1,5 @@
 {
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "relationships": [
-        {
-            "relationshipType": "one-to-many",
-            "relationshipName": "shipment",
-            "otherEntityName": "shipment",
-            "otherEntityRelationshipName": "invoice"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "relationshipName": "order",
-            "otherEntityName": "productOrder",
-            "otherEntityField": "code"
-        }
-    ],
+    "name": "Invoice",
     "fields": [
         {
             "fieldName": "date",
@@ -65,11 +50,28 @@
             ]
         }
     ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "shipment",
+            "otherEntityName": "shipment",
+            "otherEntityRelationshipName": "invoice"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "order",
+            "otherEntityName": "productOrder",
+            "otherEntityField": "code"
+        }
+    ],
     "changelogDate": "20190127172721",
-    "dto": "no",
-    "searchEngine": false,
-    "service": "serviceClass",
     "entityTableName": "invoice",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
     "jpaMetamodelFiltering": false,
-    "pagination": "pagination"
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
 }

@@ -38,6 +38,7 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
             "relationshipName": "productCategory",
             "otherEntityName": "productCategory",
             "otherEntityField": "name"

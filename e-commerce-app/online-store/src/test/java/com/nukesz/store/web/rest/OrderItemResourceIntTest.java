@@ -3,6 +3,8 @@ package com.nukesz.store.web.rest;
 import com.nukesz.store.StoreApp;
 
 import com.nukesz.store.domain.OrderItem;
+import com.nukesz.store.domain.Product;
+import com.nukesz.store.domain.ProductOrder;
 import com.nukesz.store.repository.OrderItemRepository;
 import com.nukesz.store.service.OrderItemService;
 import com.nukesz.store.web.rest.errors.ExceptionTranslator;
@@ -100,6 +102,16 @@ public class OrderItemResourceIntTest {
             .quantity(DEFAULT_QUANTITY)
             .totalPrice(DEFAULT_TOTAL_PRICE)
             .status(DEFAULT_STATUS);
+        // Add required entity
+        Product product = ProductResourceIntTest.createEntity(em);
+        em.persist(product);
+        em.flush();
+        orderItem.setProduct(product);
+        // Add required entity
+        ProductOrder productOrder = ProductOrderResourceIntTest.createEntity(em);
+        em.persist(productOrder);
+        em.flush();
+        orderItem.setOrder(productOrder);
         return orderItem;
     }
 

@@ -3,6 +3,7 @@ package com.nukesz.store.web.rest;
 import com.nukesz.store.StoreApp;
 
 import com.nukesz.store.domain.Invoice;
+import com.nukesz.store.domain.ProductOrder;
 import com.nukesz.store.repository.InvoiceRepository;
 import com.nukesz.store.service.InvoiceService;
 import com.nukesz.store.web.rest.errors.ExceptionTranslator;
@@ -119,6 +120,11 @@ public class InvoiceResourceIntTest {
             .paymentDate(DEFAULT_PAYMENT_DATE)
             .paymentAmount(DEFAULT_PAYMENT_AMOUNT)
             .code(DEFAULT_CODE);
+        // Add required entity
+        ProductOrder productOrder = ProductOrderResourceIntTest.createEntity(em);
+        em.persist(productOrder);
+        em.flush();
+        invoice.setOrder(productOrder);
         return invoice;
     }
 
