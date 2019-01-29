@@ -53,7 +53,7 @@ public class InvoiceService {
         if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
             return invoiceRepository.findAll(pageable);
         } else
-            return invoiceRepository.findAllByCustomerUserLogin(
+            return invoiceRepository.findAllByOrderCustomerUserLogin(
                 SecurityUtils.getCurrentUserLogin().get(),
                 pageable
             );
@@ -72,7 +72,7 @@ public class InvoiceService {
         if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
             return invoiceRepository.findById(id);
         } else {
-            return invoiceRepository.findByIdAndCustomerUserLogin(id, SecurityUtils.getCurrentUserLogin().get());
+            return invoiceRepository.findByIdAndOrderCustomerUserLogin(id, SecurityUtils.getCurrentUserLogin().get());
         }
     }
 
