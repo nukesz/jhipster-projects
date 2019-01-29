@@ -1,14 +1,13 @@
 package com.nukesz.store.web.rest;
 
 import com.nukesz.store.StoreApp;
-
 import com.nukesz.store.domain.OrderItem;
 import com.nukesz.store.domain.Product;
 import com.nukesz.store.domain.ProductOrder;
+import com.nukesz.store.domain.enumeration.OrderItemStatus;
 import com.nukesz.store.repository.OrderItemRepository;
 import com.nukesz.store.service.OrderItemService;
 import com.nukesz.store.web.rest.errors.ExceptionTranslator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -28,14 +28,11 @@ import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.util.List;
 
-
 import static com.nukesz.store.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import com.nukesz.store.domain.enumeration.OrderItemStatus;
 /**
  * Test class for the OrderItemResource REST controller.
  *
@@ -43,6 +40,7 @@ import com.nukesz.store.domain.enumeration.OrderItemStatus;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = StoreApp.class)
+@WithMockUser(username="admin", authorities={"ROLE_ADMIN"}, password = "admin")
 public class OrderItemResourceIntTest {
 
     private static final Integer DEFAULT_QUANTITY = 0;
