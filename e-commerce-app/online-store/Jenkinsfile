@@ -10,7 +10,7 @@ node {
     }
 
     stage('setup working directory') {
-        sh "cd e-commerce-app/online-store"
+        sh "ls -li"
     }
 
     stage('clean') {
