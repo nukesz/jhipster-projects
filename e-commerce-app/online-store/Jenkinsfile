@@ -9,6 +9,10 @@ node {
         sh "java -version"
     }
 
+    stage('setup working directory') {
+        sh "cd e-commerce-app/online-store"
+    }
+
     stage('clean') {
         sh "chmod +x gradlew"
         sh "./gradlew clean --no-daemon"
