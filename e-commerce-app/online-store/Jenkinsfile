@@ -10,12 +10,13 @@ node {
     }
 
     stage('setup working directory') {
-        sh "ls -li"
+        sh "cd e-commerce-app/online-store"
     }
 
     stage('clean') {
+        sh "ls -li"
         sh "chmod +x gradlew"
-        sh "./gradlew clean --no-daemon"
+        sh "./cd e-commerce-app/online-store/gradlew clean --no-daemon"
     }
 
     stage('npm install') {
