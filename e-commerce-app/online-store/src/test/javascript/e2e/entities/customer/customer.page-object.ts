@@ -2,8 +2,10 @@ import { element, by, ElementFinder } from 'protractor';
 
 export class CustomerComponentsPage {
     createButton = element(by.id('jh-create-entity'));
+    confirmDeleteButton = element(by.id('jhi-confirm-delete-customer'));
     deleteButtons = element.all(by.css('jhi-customer div table .btn-danger'));
     title = element.all(by.css('jhi-customer div h2#page-heading span')).first();
+    table = element.all(by.css('.table-responsive tbody tr'));
 
     async clickOnCreateButton() {
         await this.createButton.click();
@@ -19,6 +21,21 @@ export class CustomerComponentsPage {
 
     async getTitle() {
         return this.title.getAttribute('jhiTranslate');
+    }
+
+    getTable() {
+        return this.table;
+    }
+
+    async deleteFirstItem() {
+        await this.table
+            .first()
+            .element(by.css('.btn-danger'))
+            .click();
+    }
+
+    async confirmDelete() {
+        await this.confirmDeleteButton.click();
     }
 }
 
