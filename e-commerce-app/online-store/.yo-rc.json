@@ -4,7 +4,7 @@
       "packageName": "com.nukesz.store",
       "nativeLanguage": "en"
     },
-    "jhipsterVersion": "5.7.2",
+    "jhipsterVersion": "5.8.1",
     "applicationType": "monolith",
     "baseName": "store",
     "packageName": "com.nukesz.store",
@@ -37,6 +37,8 @@
       "en",
       "zh-cn",
       "fr"
-    ]
+    ],
+    "entitySuffix": "",
+    "dtoSuffix": "DTO"
   }
 }

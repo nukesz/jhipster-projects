@@ -1,5 +1,5 @@
-import { IProduct } from 'app/shared/model//product.model';
-import { IProductOrder } from 'app/shared/model//product-order.model';
+import { IProduct } from 'app/shared/model/product.model';
+import { IProductOrder } from 'app/shared/model/product-order.model';
 
 export const enum OrderItemStatus {
     AVAILABLE = 'AVAILABLE',

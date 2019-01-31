@@ -1,6 +1,4 @@
 package com.nukesz.store.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import com.nukesz.store.domain.Invoice;
 import com.nukesz.store.service.InvoiceService;
 import com.nukesz.store.web.rest.errors.BadRequestAlertException;
@@ -48,7 +46,6 @@ public class InvoiceResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/invoices")
-    @Timed
     public ResponseEntity<Invoice> createInvoice(@Valid @RequestBody Invoice invoice) throws URISyntaxException {
         log.debug("REST request to save Invoice : {}", invoice);
         if (invoice.getId() != null) {
@@ -70,7 +67,6 @@ public class InvoiceResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/invoices")
-    @Timed
     public ResponseEntity<Invoice> updateInvoice(@Valid @RequestBody Invoice invoice) throws URISyntaxException {
         log.debug("REST request to update Invoice : {}", invoice);
         if (invoice.getId() == null) {
@@ -89,7 +85,6 @@ public class InvoiceResource {
      * @return the ResponseEntity with status 200 (OK) and the list of invoices in body
      */
     @GetMapping("/invoices")
-    @Timed
     public ResponseEntity<List<Invoice>> getAllInvoices(Pageable pageable) {
         log.debug("REST request to get a page of Invoices");
         Page<Invoice> page = invoiceService.findAll(pageable);
@@ -104,7 +99,6 @@ public class InvoiceResource {
      * @return the ResponseEntity with status 200 (OK) and with body the invoice, or with status 404 (Not Found)
      */
     @GetMapping("/invoices/{id}")
-    @Timed
     public ResponseEntity<Invoice> getInvoice(@PathVariable Long id) {
         log.debug("REST request to get Invoice : {}", id);
         Optional<Invoice> invoice = invoiceService.findOne(id);
@@ -118,7 +112,6 @@ public class InvoiceResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/invoices/{id}")
-    @Timed
     public ResponseEntity<Void> deleteInvoice(@PathVariable Long id) {
         log.debug("REST request to delete Invoice : {}", id);
         invoiceService.delete(id);

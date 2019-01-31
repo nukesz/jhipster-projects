@@ -305,7 +305,7 @@ public class ProductOrderResourceIntTest {
 
         int databaseSizeBeforeDelete = productOrderRepository.findAll().size();
 
-        // Get the productOrder
+        // Delete the productOrder
         restProductOrderMockMvc.perform(delete("/api/product-orders/{id}", productOrder.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());

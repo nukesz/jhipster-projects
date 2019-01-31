@@ -24,6 +24,7 @@ describe('Customer e2e test', () => {
     it('should load Customers', async () => {
         await navBarPage.goToEntity('customer');
         customerComponentsPage = new CustomerComponentsPage();
+        await browser.wait(ec.visibilityOf(customerComponentsPage.title), 5000);
         expect(await customerComponentsPage.getTitle()).to.eq('storeApp.customer.home.title');
     });
 

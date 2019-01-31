@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiAlertService } from 'ng-jhipster';
-
 import { IShipment } from 'app/shared/model/shipment.model';
 import { ShipmentService } from './shipment.service';
 import { IInvoice } from 'app/shared/model/invoice.model';
@@ -35,12 +35,13 @@ export class ShipmentUpdateComponent implements OnInit {
             this.shipment = shipment;
             this.date = this.shipment.date != null ? this.shipment.date.format(DATE_TIME_FORMAT) : null;
         });
-        this.invoiceService.query().subscribe(
-            (res: HttpResponse<IInvoice[]>) => {
-                this.invoices = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        this.invoiceService
+            .query()
+            .pipe(
+                filter((mayBeOk: HttpResponse<IInvoice[]>) => mayBeOk.ok),
+                map((response: HttpResponse<IInvoice[]>) => response.body)
+            )
+            .subscribe((res: IInvoice[]) => (this.invoices = res), (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     previousState() {

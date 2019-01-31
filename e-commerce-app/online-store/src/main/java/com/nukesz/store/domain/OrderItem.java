@@ -1,5 +1,6 @@
 package com.nukesz.store.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -22,7 +23,7 @@ import com.nukesz.store.domain.enumeration.OrderItemStatus;
 public class OrderItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,7 +45,7 @@ public class OrderItem implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties("")
+    @JsonIgnoreProperties("orderItems")
     private Product product;
 
     @ManyToOne(optional = false)

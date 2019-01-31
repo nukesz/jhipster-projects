@@ -24,6 +24,7 @@ describe('Invoice e2e test', () => {
     it('should load Invoices', async () => {
         await navBarPage.goToEntity('invoice');
         invoiceComponentsPage = new InvoiceComponentsPage();
+        await browser.wait(ec.visibilityOf(invoiceComponentsPage.title), 5000);
         expect(await invoiceComponentsPage.getTitle()).to.eq('storeApp.invoice.home.title');
     });
 

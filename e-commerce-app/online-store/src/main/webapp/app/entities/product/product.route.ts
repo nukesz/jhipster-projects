@@ -17,7 +17,7 @@ import { IProduct } from 'app/shared/model/product.model';
 export class ProductResolve implements Resolve<IProduct> {
     constructor(private service: ProductService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IProduct> {
         const id = route.params['id'] ? route.params['id'] : null;
         if (id) {
             return this.service.find(id).pipe(
@@ -31,7 +31,7 @@ export class ProductResolve implements Resolve<IProduct> {
 
 export const productRoute: Routes = [
     {
-        path: 'product',
+        path: '',
         component: ProductComponent,
         resolve: {
             pagingParams: JhiResolvePagingParams
@@ -44,7 +44,7 @@ export const productRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'product/:id/view',
+        path: ':id/view',
         component: ProductDetailComponent,
         resolve: {
             product: ProductResolve
@@ -56,7 +56,7 @@ export const productRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'product/new',
+        path: 'new',
         component: ProductUpdateComponent,
         resolve: {
             product: ProductResolve
@@ -68,7 +68,7 @@ export const productRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'product/:id/edit',
+        path: ':id/edit',
         component: ProductUpdateComponent,
         resolve: {
             product: ProductResolve
@@ -83,7 +83,7 @@ export const productRoute: Routes = [
 
 export const productPopupRoute: Routes = [
     {
-        path: 'product/:id/delete',
+        path: ':id/delete',
         component: ProductDeletePopupComponent,
         resolve: {
             product: ProductResolve

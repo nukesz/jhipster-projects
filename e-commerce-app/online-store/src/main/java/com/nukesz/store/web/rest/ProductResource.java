@@ -1,6 +1,4 @@
 package com.nukesz.store.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import com.nukesz.store.domain.Product;
 import com.nukesz.store.service.ProductService;
 import com.nukesz.store.web.rest.errors.BadRequestAlertException;
@@ -48,7 +46,6 @@ public class ProductResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/products")
-    @Timed
     public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) throws URISyntaxException {
         log.debug("REST request to save Product : {}", product);
         if (product.getId() != null) {
@@ -70,7 +67,6 @@ public class ProductResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/products")
-    @Timed
     public ResponseEntity<Product> updateProduct(@Valid @RequestBody Product product) throws URISyntaxException {
         log.debug("REST request to update Product : {}", product);
         if (product.getId() == null) {
@@ -89,7 +85,6 @@ public class ProductResource {
      * @return the ResponseEntity with status 200 (OK) and the list of products in body
      */
     @GetMapping("/products")
-    @Timed
     public ResponseEntity<List<Product>> getAllProducts(Pageable pageable) {
         log.debug("REST request to get a page of Products");
         Page<Product> page = productService.findAll(pageable);
@@ -104,7 +99,6 @@ public class ProductResource {
      * @return the ResponseEntity with status 200 (OK) and with body the product, or with status 404 (Not Found)
      */
     @GetMapping("/products/{id}")
-    @Timed
     public ResponseEntity<Product> getProduct(@PathVariable Long id) {
         log.debug("REST request to get Product : {}", id);
         Optional<Product> product = productService.findOne(id);
@@ -118,7 +112,6 @@ public class ProductResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/products/{id}")
-    @Timed
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         log.debug("REST request to delete Product : {}", id);
         productService.delete(id);

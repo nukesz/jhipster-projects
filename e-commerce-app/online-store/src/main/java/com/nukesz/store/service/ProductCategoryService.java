@@ -67,7 +67,6 @@ public class ProductCategoryService {
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete ProductCategory : {}", id);
-        productCategoryRepository.deleteById(id);
+        log.debug("Request to delete ProductCategory : {}", id);        productCategoryRepository.deleteById(id);
     }
 }

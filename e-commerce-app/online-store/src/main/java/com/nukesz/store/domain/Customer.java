@@ -1,5 +1,6 @@
 package com.nukesz.store.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -23,7 +24,7 @@ import com.nukesz.store.domain.enumeration.Gender;
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -66,6 +67,7 @@ public class Customer implements Serializable {
     private String country;
 
     @OneToOne(optional = false)    @NotNull
+
     @JoinColumn(unique = true)
     private User user;
 

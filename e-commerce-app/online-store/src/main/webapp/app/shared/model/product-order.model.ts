@@ -1,7 +1,7 @@
 import { Moment } from 'moment';
-import { IOrderItem } from 'app/shared/model//order-item.model';
-import { IInvoice } from 'app/shared/model//invoice.model';
-import { ICustomer } from 'app/shared/model//customer.model';
+import { IOrderItem } from 'app/shared/model/order-item.model';
+import { IInvoice } from 'app/shared/model/invoice.model';
+import { ICustomer } from 'app/shared/model/customer.model';
 
 export const enum OrderStatus {
     COMPLETED = 'COMPLETED',

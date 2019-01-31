@@ -69,7 +69,6 @@ public class ShipmentService {
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete Shipment : {}", id);
-        shipmentRepository.deleteById(id);
+        log.debug("Request to delete Shipment : {}", id);        shipmentRepository.deleteById(id);
     }
 }

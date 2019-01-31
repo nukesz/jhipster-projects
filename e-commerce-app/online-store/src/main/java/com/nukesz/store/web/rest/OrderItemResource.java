@@ -1,6 +1,4 @@
 package com.nukesz.store.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import com.nukesz.store.domain.OrderItem;
 import com.nukesz.store.service.OrderItemService;
 import com.nukesz.store.web.rest.errors.BadRequestAlertException;
@@ -48,7 +46,6 @@ public class OrderItemResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/order-items")
-    @Timed
     public ResponseEntity<OrderItem> createOrderItem(@Valid @RequestBody OrderItem orderItem) throws URISyntaxException {
         log.debug("REST request to save OrderItem : {}", orderItem);
         if (orderItem.getId() != null) {
@@ -70,7 +67,6 @@ public class OrderItemResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/order-items")
-    @Timed
     public ResponseEntity<OrderItem> updateOrderItem(@Valid @RequestBody OrderItem orderItem) throws URISyntaxException {
         log.debug("REST request to update OrderItem : {}", orderItem);
         if (orderItem.getId() == null) {
@@ -89,7 +85,6 @@ public class OrderItemResource {
      * @return the ResponseEntity with status 200 (OK) and the list of orderItems in body
      */
     @GetMapping("/order-items")
-    @Timed
     public ResponseEntity<List<OrderItem>> getAllOrderItems(Pageable pageable) {
         log.debug("REST request to get a page of OrderItems");
         Page<OrderItem> page = orderItemService.findAll(pageable);
@@ -104,7 +99,6 @@ public class OrderItemResource {
      * @return the ResponseEntity with status 200 (OK) and with body the orderItem, or with status 404 (Not Found)
      */
     @GetMapping("/order-items/{id}")
-    @Timed
     public ResponseEntity<OrderItem> getOrderItem(@PathVariable Long id) {
         log.debug("REST request to get OrderItem : {}", id);
         Optional<OrderItem> orderItem = orderItemService.findOne(id);
@@ -118,7 +112,6 @@ public class OrderItemResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/order-items/{id}")
-    @Timed
     public ResponseEntity<Void> deleteOrderItem(@PathVariable Long id) {
         log.debug("REST request to delete OrderItem : {}", id);
         orderItemService.delete(id);
