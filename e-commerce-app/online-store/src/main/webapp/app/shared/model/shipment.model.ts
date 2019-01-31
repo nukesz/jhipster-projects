@@ -1,5 +1,5 @@
 import { Moment } from 'moment';
-import { IInvoice } from 'app/shared/model//invoice.model';
+import { IInvoice } from 'app/shared/model/invoice.model';
 
 export interface IShipment {
     id?: number;

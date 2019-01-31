@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { JhiAlertService } from 'ng-jhipster';
-
 import { IOrderItem } from 'app/shared/model/order-item.model';
 import { OrderItemService } from './order-item.service';
 import { IProduct } from 'app/shared/model/product.model';
@@ -36,18 +36,20 @@ export class OrderItemUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ orderItem }) => {
             this.orderItem = orderItem;
         });
-        this.productService.query().subscribe(
-            (res: HttpResponse<IProduct[]>) => {
-                this.products = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.productOrderService.query().subscribe(
-            (res: HttpResponse<IProductOrder[]>) => {
-                this.productorders = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        this.productService
+            .query()
+            .pipe(
+                filter((mayBeOk: HttpResponse<IProduct[]>) => mayBeOk.ok),
+                map((response: HttpResponse<IProduct[]>) => response.body)
+            )
+            .subscribe((res: IProduct[]) => (this.products = res), (res: HttpErrorResponse) => this.onError(res.message));
+        this.productOrderService
+            .query()
+            .pipe(
+                filter((mayBeOk: HttpResponse<IProductOrder[]>) => mayBeOk.ok),
+                map((response: HttpResponse<IProductOrder[]>) => response.body)
+            )
+            .subscribe((res: IProductOrder[]) => (this.productorders = res), (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     previousState() {

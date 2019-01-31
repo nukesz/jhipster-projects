@@ -1,8 +1,9 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { JhiLanguageService } from 'ng-jhipster';
+import { JhiLanguageHelper } from 'app/core';
 
 import { StoreSharedModule } from 'app/shared';
-import { StoreAdminModule } from 'app/admin/admin.module';
 import {
     CustomerComponent,
     CustomerDetailComponent,
@@ -16,7 +17,7 @@ import {
 const ENTITY_STATES = [...customerRoute, ...customerPopupRoute];
 
 @NgModule({
-    imports: [StoreSharedModule, StoreAdminModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [StoreSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         CustomerComponent,
         CustomerDetailComponent,
@@ -25,6 +26,15 @@ const ENTITY_STATES = [...customerRoute, ...customerPopupRoute];
         CustomerDeletePopupComponent
     ],
     entryComponents: [CustomerComponent, CustomerUpdateComponent, CustomerDeleteDialogComponent, CustomerDeletePopupComponent],
+    providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class StoreCustomerModule {}
+export class StoreCustomerModule {
+    constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
+        this.languageHelper.language.subscribe((languageKey: string) => {
+            if (languageKey !== undefined) {
+                this.languageService.changeLanguage(languageKey);
+            }
+        });
+    }
+}

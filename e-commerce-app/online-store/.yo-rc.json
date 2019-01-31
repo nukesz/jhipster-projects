@@ -1,36 +1,44 @@
 {
-    "generator-jhipster": {
-        "promptValues": {
-            "packageName": "com.nukesz.store",
-            "nativeLanguage": "en"
-        },
-        "jhipsterVersion": "5.7.2",
-        "applicationType": "monolith",
-        "baseName": "store",
-        "packageName": "com.nukesz.store",
-        "packageFolder": "com/nukesz/store",
-        "serverPort": "8080",
-        "authenticationType": "jwt",
-        "cacheProvider": "hazelcast",
-        "enableHibernateCache": true,
-        "websocket": "spring-websocket",
-        "databaseType": "sql",
-        "devDatabaseType": "h2Disk",
-        "prodDatabaseType": "mysql",
-        "searchEngine": false,
-        "messageBroker": false,
-        "serviceDiscoveryType": false,
-        "buildTool": "gradle",
-        "enableSwaggerCodegen": false,
-        "jwtSecretKey": "YTE2ZThmYThlNWZiYzcwOTQ4NGE4ODViNTNmYTYwZmNhYjEyZGEyZmE2Yzc5MDY2MWRmN2Y1ZjA1YmVlZWU4YTQ5Y2VhYjFhOWZhOGJkYWE1MmIwNGZlNzA0ZmIwNTdjZDdiYTZjZWU5OTRiZTMwODY3MDRlZTFlNWEyM2QxYjE=",
-        "clientFramework": "angularX",
-        "useSass": true,
-        "clientPackageManager": "npm",
-        "testFrameworks": ["protractor"],
-        "jhiPrefix": "jhi",
-        "otherModules": [],
-        "enableTranslation": true,
-        "nativeLanguage": "en",
-        "languages": ["en", "zh-cn", "fr"]
-    }
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.nukesz.store",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.8.1",
+    "applicationType": "monolith",
+    "baseName": "store",
+    "packageName": "com.nukesz.store",
+    "packageFolder": "com/nukesz/store",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YTE2ZThmYThlNWZiYzcwOTQ4NGE4ODViNTNmYTYwZmNhYjEyZGEyZmE2Yzc5MDY2MWRmN2Y1ZjA1YmVlZWU4YTQ5Y2VhYjFhOWZhOGJkYWE1MmIwNGZlNzA0ZmIwNTdjZDdiYTZjZWU5OTRiZTMwODY3MDRlZTFlNWEyM2QxYjE=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "protractor"
+    ],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "zh-cn",
+      "fr"
+    ],
+    "entitySuffix": "",
+    "dtoSuffix": "DTO"
+  }
 }

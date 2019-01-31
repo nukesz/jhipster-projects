@@ -395,7 +395,7 @@ public class InvoiceResourceIntTest {
 
         int databaseSizeBeforeDelete = invoiceRepository.findAll().size();
 
-        // Get the invoice
+        // Delete the invoice
         restInvoiceMockMvc.perform(delete("/api/invoices/{id}", invoice.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());

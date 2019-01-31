@@ -1,4 +1,4 @@
-import { IProductCategory } from 'app/shared/model//product-category.model';
+import { IProductCategory } from 'app/shared/model/product-category.model';
 
 export const enum Size {
     S = 'S',

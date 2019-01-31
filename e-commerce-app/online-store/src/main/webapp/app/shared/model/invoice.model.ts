@@ -1,6 +1,6 @@
 import { Moment } from 'moment';
-import { IShipment } from 'app/shared/model//shipment.model';
-import { IProductOrder } from 'app/shared/model//product-order.model';
+import { IShipment } from 'app/shared/model/shipment.model';
+import { IProductOrder } from 'app/shared/model/product-order.model';
 
 export const enum InvoiceStatus {
     PAID = 'PAID',

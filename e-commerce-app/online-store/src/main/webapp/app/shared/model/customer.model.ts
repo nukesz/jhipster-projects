@@ -1,5 +1,5 @@
 import { IUser } from 'app/core/user/user.model';
-import { IProductOrder } from 'app/shared/model//product-order.model';
+import { IProductOrder } from 'app/shared/model/product-order.model';
 
 export const enum Gender {
     MALE = 'MALE',

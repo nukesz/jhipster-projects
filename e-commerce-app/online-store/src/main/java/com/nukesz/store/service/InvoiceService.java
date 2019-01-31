@@ -82,7 +82,6 @@ public class InvoiceService {
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete Invoice : {}", id);
-        invoiceRepository.deleteById(id);
+        log.debug("Request to delete Invoice : {}", id);        invoiceRepository.deleteById(id);
     }
 }

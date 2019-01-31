@@ -52,8 +52,8 @@ public class CustomerResourceIntTest {
     private static final Gender DEFAULT_GENDER = Gender.MALE;
     private static final Gender UPDATED_GENDER = Gender.FEMALE;
 
-    private static final String DEFAULT_EMAIL = "6<@H.Et";
-    private static final String UPDATED_EMAIL = ":@9.>";
+    private static final String DEFAULT_EMAIL = "}-@H.5#";
+    private static final String UPDATED_EMAIL = ")Y@S._";
 
     private static final String DEFAULT_PHONE = "AAAAAAAAAA";
     private static final String UPDATED_PHONE = "BBBBBBBBBB";
@@ -447,7 +447,7 @@ public class CustomerResourceIntTest {
 
         int databaseSizeBeforeDelete = customerRepository.findAll().size();
 
-        // Get the customer
+        // Delete the customer
         restCustomerMockMvc.perform(delete("/api/customers/{id}", customer.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());

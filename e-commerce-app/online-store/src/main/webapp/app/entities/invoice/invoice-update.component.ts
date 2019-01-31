@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiAlertService } from 'ng-jhipster';
-
 import { IInvoice } from 'app/shared/model/invoice.model';
 import { InvoiceService } from './invoice.service';
 import { IProductOrder } from 'app/shared/model/product-order.model';
@@ -37,12 +37,13 @@ export class InvoiceUpdateComponent implements OnInit {
             this.date = this.invoice.date != null ? this.invoice.date.format(DATE_TIME_FORMAT) : null;
             this.paymentDate = this.invoice.paymentDate != null ? this.invoice.paymentDate.format(DATE_TIME_FORMAT) : null;
         });
-        this.productOrderService.query().subscribe(
-            (res: HttpResponse<IProductOrder[]>) => {
-                this.productorders = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        this.productOrderService
+            .query()
+            .pipe(
+                filter((mayBeOk: HttpResponse<IProductOrder[]>) => mayBeOk.ok),
+                map((response: HttpResponse<IProductOrder[]>) => response.body)
+            )
+            .subscribe((res: IProductOrder[]) => (this.productorders = res), (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     previousState() {

@@ -261,7 +261,7 @@ public class ShipmentResourceIntTest {
 
         int databaseSizeBeforeDelete = shipmentRepository.findAll().size();
 
-        // Get the shipment
+        // Delete the shipment
         restShipmentMockMvc.perform(delete("/api/shipments/{id}", shipment.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());

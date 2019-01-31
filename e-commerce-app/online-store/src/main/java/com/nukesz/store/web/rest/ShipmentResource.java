@@ -1,6 +1,4 @@
 package com.nukesz.store.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import com.nukesz.store.domain.Shipment;
 import com.nukesz.store.service.ShipmentService;
 import com.nukesz.store.web.rest.errors.BadRequestAlertException;
@@ -48,7 +46,6 @@ public class ShipmentResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/shipments")
-    @Timed
     public ResponseEntity<Shipment> createShipment(@Valid @RequestBody Shipment shipment) throws URISyntaxException {
         log.debug("REST request to save Shipment : {}", shipment);
         if (shipment.getId() != null) {
@@ -70,7 +67,6 @@ public class ShipmentResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/shipments")
-    @Timed
     public ResponseEntity<Shipment> updateShipment(@Valid @RequestBody Shipment shipment) throws URISyntaxException {
         log.debug("REST request to update Shipment : {}", shipment);
         if (shipment.getId() == null) {
@@ -89,7 +85,6 @@ public class ShipmentResource {
      * @return the ResponseEntity with status 200 (OK) and the list of shipments in body
      */
     @GetMapping("/shipments")
-    @Timed
     public ResponseEntity<List<Shipment>> getAllShipments(Pageable pageable) {
         log.debug("REST request to get a page of Shipments");
         Page<Shipment> page = shipmentService.findAll(pageable);
@@ -104,7 +99,6 @@ public class ShipmentResource {
      * @return the ResponseEntity with status 200 (OK) and with body the shipment, or with status 404 (Not Found)
      */
     @GetMapping("/shipments/{id}")
-    @Timed
     public ResponseEntity<Shipment> getShipment(@PathVariable Long id) {
         log.debug("REST request to get Shipment : {}", id);
         Optional<Shipment> shipment = shipmentService.findOne(id);
@@ -118,7 +112,6 @@ public class ShipmentResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/shipments/{id}")
-    @Timed
     public ResponseEntity<Void> deleteShipment(@PathVariable Long id) {
         log.debug("REST request to delete Shipment : {}", id);
         shipmentService.delete(id);

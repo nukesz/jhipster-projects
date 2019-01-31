@@ -47,11 +47,11 @@ export class CustomerDeletePopupComponent implements OnInit, OnDestroy {
                 this.ngbModalRef.componentInstance.customer = customer;
                 this.ngbModalRef.result.then(
                     result => {
-                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                        this.router.navigate(['/customer', { outlets: { popup: null } }]);
                         this.ngbModalRef = null;
                     },
                     reason => {
-                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                        this.router.navigate(['/customer', { outlets: { popup: null } }]);
                         this.ngbModalRef = null;
                     }
                 );

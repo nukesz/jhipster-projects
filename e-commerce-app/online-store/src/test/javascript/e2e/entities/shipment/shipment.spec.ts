@@ -24,6 +24,7 @@ describe('Shipment e2e test', () => {
     it('should load Shipments', async () => {
         await navBarPage.goToEntity('shipment');
         shipmentComponentsPage = new ShipmentComponentsPage();
+        await browser.wait(ec.visibilityOf(shipmentComponentsPage.title), 5000);
         expect(await shipmentComponentsPage.getTitle()).to.eq('storeApp.shipment.home.title');
     });
 
