@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.nukesz.store",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.7.2",
+    "applicationType": "microservice",
+    "baseName": "invoice",
+    "packageName": "com.nukesz.store",
+    "packageFolder": "com/nukesz/store",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZmM5ZGM1MWViNjY1OWU3OWE0ODQyNzc4NmM3ODkwZjM5MGU4ZjkyZWU3Yjk1MGMzZjIwOWRmODgyMmQ4MWI4ODI0NzFiOTZjNGVlZWM1NTFmODlhZGEzOTNiNTU1MmI1YjlmNjAxMGNlOWE5ZDdjNDUyY2Q2MzlkMDc4MjE4YzU=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "zh-tw"
+    ],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
