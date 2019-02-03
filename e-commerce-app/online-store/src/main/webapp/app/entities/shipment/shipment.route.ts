@@ -17,7 +17,7 @@ import { IShipment } from 'app/shared/model/shipment.model';
 export class ShipmentResolve implements Resolve<IShipment> {
     constructor(private service: ShipmentService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Shipment> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IShipment> {
         const id = route.params['id'] ? route.params['id'] : null;
         if (id) {
             return this.service.find(id).pipe(
@@ -31,7 +31,7 @@ export class ShipmentResolve implements Resolve<IShipment> {
 
 export const shipmentRoute: Routes = [
     {
-        path: 'shipment',
+        path: '',
         component: ShipmentComponent,
         resolve: {
             pagingParams: JhiResolvePagingParams
@@ -44,7 +44,7 @@ export const shipmentRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'shipment/:id/view',
+        path: ':id/view',
         component: ShipmentDetailComponent,
         resolve: {
             shipment: ShipmentResolve
@@ -56,7 +56,7 @@ export const shipmentRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'shipment/new',
+        path: 'new',
         component: ShipmentUpdateComponent,
         resolve: {
             shipment: ShipmentResolve
@@ -68,7 +68,7 @@ export const shipmentRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'shipment/:id/edit',
+        path: ':id/edit',
         component: ShipmentUpdateComponent,
         resolve: {
             shipment: ShipmentResolve
@@ -83,7 +83,7 @@ export const shipmentRoute: Routes = [
 
 export const shipmentPopupRoute: Routes = [
     {
-        path: 'shipment/:id/delete',
+        path: ':id/delete',
         component: ShipmentDeletePopupComponent,
         resolve: {
             shipment: ShipmentResolve

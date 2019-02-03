@@ -24,6 +24,7 @@ describe('ProductOrder e2e test', () => {
     it('should load ProductOrders', async () => {
         await navBarPage.goToEntity('product-order');
         productOrderComponentsPage = new ProductOrderComponentsPage();
+        await browser.wait(ec.visibilityOf(productOrderComponentsPage.title), 5000);
         expect(await productOrderComponentsPage.getTitle()).to.eq('storeApp.productOrder.home.title');
     });
 

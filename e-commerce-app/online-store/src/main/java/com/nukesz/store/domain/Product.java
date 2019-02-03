@@ -1,5 +1,6 @@
 package com.nukesz.store.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
@@ -24,7 +25,7 @@ import com.nukesz.store.domain.enumeration.Size;
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

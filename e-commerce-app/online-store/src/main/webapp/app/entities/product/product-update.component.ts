@@ -2,8 +2,8 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
-
 import { IProduct } from 'app/shared/model/product.model';
 import { ProductService } from './product.service';
 import { IProductCategory } from 'app/shared/model/product-category.model';
@@ -33,12 +33,13 @@ export class ProductUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ product }) => {
             this.product = product;
         });
-        this.productCategoryService.query().subscribe(
-            (res: HttpResponse<IProductCategory[]>) => {
-                this.productcategories = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        this.productCategoryService
+            .query()
+            .pipe(
+                filter((mayBeOk: HttpResponse<IProductCategory[]>) => mayBeOk.ok),
+                map((response: HttpResponse<IProductCategory[]>) => response.body)
+            )
+            .subscribe((res: IProductCategory[]) => (this.productcategories = res), (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     byteSize(field) {

@@ -17,7 +17,7 @@ import { IInvoice } from 'app/shared/model/invoice.model';
 export class InvoiceResolve implements Resolve<IInvoice> {
     constructor(private service: InvoiceService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Invoice> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IInvoice> {
         const id = route.params['id'] ? route.params['id'] : null;
         if (id) {
             return this.service.find(id).pipe(
@@ -31,7 +31,7 @@ export class InvoiceResolve implements Resolve<IInvoice> {
 
 export const invoiceRoute: Routes = [
     {
-        path: 'invoice',
+        path: '',
         component: InvoiceComponent,
         resolve: {
             pagingParams: JhiResolvePagingParams
@@ -44,7 +44,7 @@ export const invoiceRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'invoice/:id/view',
+        path: ':id/view',
         component: InvoiceDetailComponent,
         resolve: {
             invoice: InvoiceResolve
@@ -56,7 +56,7 @@ export const invoiceRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'invoice/new',
+        path: 'new',
         component: InvoiceUpdateComponent,
         resolve: {
             invoice: InvoiceResolve
@@ -68,7 +68,7 @@ export const invoiceRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'invoice/:id/edit',
+        path: ':id/edit',
         component: InvoiceUpdateComponent,
         resolve: {
             invoice: InvoiceResolve
@@ -83,7 +83,7 @@ export const invoiceRoute: Routes = [
 
 export const invoicePopupRoute: Routes = [
     {
-        path: 'invoice/:id/delete',
+        path: ':id/delete',
         component: InvoiceDeletePopupComponent,
         resolve: {
             invoice: InvoiceResolve

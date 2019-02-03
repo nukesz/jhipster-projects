@@ -13,6 +13,12 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
+eureka:
+    client:
+        enabled: false
+    instance:
+        appname: store
+        instanceId: store:${spring.application.instance-id:${random.value}}
 
 spring:
     application:
@@ -42,7 +48,7 @@ spring:
             hibernate.connection.provider_disables_autocommit: true
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
-            hibernate.generate_statistics: true
+            hibernate.generate_statistics: false
             hibernate.hbm2ddl.auto: validate
             hibernate.jdbc.time_zone: UTC
     liquibase:
@@ -90,9 +96,8 @@ jhipster:
                 base64-secret: YTE2ZThmYThlNWZiYzcwOTQ4NGE4ODViNTNmYTYwZmNhYjEyZGEyZmE2Yzc5MDY2MWRmN2Y1ZjA1YmVlZWU4YTQ5Y2VhYjFhOWZhOGJkYWE1MmIwNGZlNzA0ZmIwNTdjZDdiYTZjZWU5OTRiZTMwODY3MDRlZTFlNWEyM2QxYjE=
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
-    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
-        jmx.enabled: true
-        logs: # Reports Dropwizard metrics in the logs
+    metrics:
+        logs: # Reports metrics in the logs
             enabled: true
             report-frequency: 60 # in seconds
 

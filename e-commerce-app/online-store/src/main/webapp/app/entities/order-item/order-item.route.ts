@@ -17,7 +17,7 @@ import { IOrderItem } from 'app/shared/model/order-item.model';
 export class OrderItemResolve implements Resolve<IOrderItem> {
     constructor(private service: OrderItemService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<OrderItem> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IOrderItem> {
         const id = route.params['id'] ? route.params['id'] : null;
         if (id) {
             return this.service.find(id).pipe(
@@ -31,7 +31,7 @@ export class OrderItemResolve implements Resolve<IOrderItem> {
 
 export const orderItemRoute: Routes = [
     {
-        path: 'order-item',
+        path: '',
         component: OrderItemComponent,
         resolve: {
             pagingParams: JhiResolvePagingParams
@@ -44,7 +44,7 @@ export const orderItemRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'order-item/:id/view',
+        path: ':id/view',
         component: OrderItemDetailComponent,
         resolve: {
             orderItem: OrderItemResolve
@@ -56,7 +56,7 @@ export const orderItemRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'order-item/new',
+        path: 'new',
         component: OrderItemUpdateComponent,
         resolve: {
             orderItem: OrderItemResolve
@@ -68,7 +68,7 @@ export const orderItemRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'order-item/:id/edit',
+        path: ':id/edit',
         component: OrderItemUpdateComponent,
         resolve: {
             orderItem: OrderItemResolve
@@ -83,7 +83,7 @@ export const orderItemRoute: Routes = [
 
 export const orderItemPopupRoute: Routes = [
     {
-        path: 'order-item/:id/delete',
+        path: ':id/delete',
         component: OrderItemDeletePopupComponent,
         resolve: {
             orderItem: OrderItemResolve

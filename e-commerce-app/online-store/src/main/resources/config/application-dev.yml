@@ -19,6 +19,13 @@ logging:
         io.github.jhipster: DEBUG
         com.nukesz.store: DEBUG
 
+eureka:
+    instance:
+        prefer-ip-address: true
+    client:
+        service-url:
+            defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
+
 spring:
     profiles:
         active: dev
@@ -41,6 +48,7 @@ spring:
         username: store
         password:
         hikari:
+            poolName: Hikari
             auto-commit: false
     h2:
         console:
@@ -70,6 +78,15 @@ spring:
         cache-duration: PT1S # 1 second, see the ISO 8601 standard
     thymeleaf:
         cache: false
+    sleuth:
+        sampler:
+            probability: 1 # report 100% of traces
+    zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
+        base-url: http://localhost:9411
+        enabled: false
+        locator:
+            discovery:
+                enabled: true
 
 server:
     port: 8080
@@ -81,6 +98,13 @@ server:
 # ===================================================================
 
 jhipster:
+    gateway:
+        rate-limiting:
+            enabled: false
+            limit: 100000
+            duration-in-seconds: 3600
+        authorized-microservices-endpoints: # Access Control Policy, if left empty for a route, all endpoints will be accessible
+            app1: /api,/v2/api-docs # recommended dev configuration
     http:
         version: V_1_1 # To use HTTP/2 you will need to activate TLS (see application-tls.yml)
     cache: # Cache configuration
@@ -110,12 +134,8 @@ jhipster:
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: store@localhost
         base-url: http://127.0.0.1:8080
-    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
-        jmx:
-            enabled: true
-        prometheus:
-            enabled: false #expose metrics via prometheus
-        logs: # Reports Dropwizard metrics in the logs
+    metrics:
+        logs: # Reports metrics in the logs
             enabled: false
             report-frequency: 60 # in seconds
     logging:

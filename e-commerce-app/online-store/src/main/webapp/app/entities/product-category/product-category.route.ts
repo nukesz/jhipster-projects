@@ -16,7 +16,7 @@ import { IProductCategory } from 'app/shared/model/product-category.model';
 export class ProductCategoryResolve implements Resolve<IProductCategory> {
     constructor(private service: ProductCategoryService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ProductCategory> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IProductCategory> {
         const id = route.params['id'] ? route.params['id'] : null;
         if (id) {
             return this.service.find(id).pipe(
@@ -30,7 +30,7 @@ export class ProductCategoryResolve implements Resolve<IProductCategory> {
 
 export const productCategoryRoute: Routes = [
     {
-        path: 'product-category',
+        path: '',
         component: ProductCategoryComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -39,7 +39,7 @@ export const productCategoryRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'product-category/:id/view',
+        path: ':id/view',
         component: ProductCategoryDetailComponent,
         resolve: {
             productCategory: ProductCategoryResolve
@@ -51,7 +51,7 @@ export const productCategoryRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'product-category/new',
+        path: 'new',
         component: ProductCategoryUpdateComponent,
         resolve: {
             productCategory: ProductCategoryResolve
@@ -63,7 +63,7 @@ export const productCategoryRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'product-category/:id/edit',
+        path: ':id/edit',
         component: ProductCategoryUpdateComponent,
         resolve: {
             productCategory: ProductCategoryResolve
@@ -78,7 +78,7 @@ export const productCategoryRoute: Routes = [
 
 export const productCategoryPopupRoute: Routes = [
     {
-        path: 'product-category/:id/delete',
+        path: ':id/delete',
         component: ProductCategoryDeletePopupComponent,
         resolve: {
             productCategory: ProductCategoryResolve

@@ -83,7 +83,6 @@ public class ProductOrderService {
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete ProductOrder : {}", id);
-        productOrderRepository.deleteById(id);
+        log.debug("Request to delete ProductOrder : {}", id);        productOrderRepository.deleteById(id);
     }
 }

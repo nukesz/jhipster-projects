@@ -1,6 +1,4 @@
 package com.nukesz.store.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import com.nukesz.store.domain.ProductOrder;
 import com.nukesz.store.service.ProductOrderService;
 import com.nukesz.store.web.rest.errors.BadRequestAlertException;
@@ -48,7 +46,6 @@ public class ProductOrderResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/product-orders")
-    @Timed
     public ResponseEntity<ProductOrder> createProductOrder(@Valid @RequestBody ProductOrder productOrder) throws URISyntaxException {
         log.debug("REST request to save ProductOrder : {}", productOrder);
         if (productOrder.getId() != null) {
@@ -70,7 +67,6 @@ public class ProductOrderResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/product-orders")
-    @Timed
     public ResponseEntity<ProductOrder> updateProductOrder(@Valid @RequestBody ProductOrder productOrder) throws URISyntaxException {
         log.debug("REST request to update ProductOrder : {}", productOrder);
         if (productOrder.getId() == null) {
@@ -89,7 +85,6 @@ public class ProductOrderResource {
      * @return the ResponseEntity with status 200 (OK) and the list of productOrders in body
      */
     @GetMapping("/product-orders")
-    @Timed
     public ResponseEntity<List<ProductOrder>> getAllProductOrders(Pageable pageable) {
         log.debug("REST request to get a page of ProductOrders");
         Page<ProductOrder> page = productOrderService.findAll(pageable);
@@ -104,7 +99,6 @@ public class ProductOrderResource {
      * @return the ResponseEntity with status 200 (OK) and with body the productOrder, or with status 404 (Not Found)
      */
     @GetMapping("/product-orders/{id}")
-    @Timed
     public ResponseEntity<ProductOrder> getProductOrder(@PathVariable Long id) {
         log.debug("REST request to get ProductOrder : {}", id);
         Optional<ProductOrder> productOrder = productOrderService.findOne(id);
@@ -118,7 +112,6 @@ public class ProductOrderResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/product-orders/{id}")
-    @Timed
     public ResponseEntity<Void> deleteProductOrder(@PathVariable Long id) {
         log.debug("REST request to delete ProductOrder : {}", id);
         productOrderService.delete(id);

@@ -1,6 +1,4 @@
 package com.nukesz.store.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import com.nukesz.store.domain.ProductCategory;
 import com.nukesz.store.service.ProductCategoryService;
 import com.nukesz.store.web.rest.errors.BadRequestAlertException;
@@ -43,7 +41,6 @@ public class ProductCategoryResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/product-categories")
-    @Timed
     public ResponseEntity<ProductCategory> createProductCategory(@Valid @RequestBody ProductCategory productCategory) throws URISyntaxException {
         log.debug("REST request to save ProductCategory : {}", productCategory);
         if (productCategory.getId() != null) {
@@ -65,7 +62,6 @@ public class ProductCategoryResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/product-categories")
-    @Timed
     public ResponseEntity<ProductCategory> updateProductCategory(@Valid @RequestBody ProductCategory productCategory) throws URISyntaxException {
         log.debug("REST request to update ProductCategory : {}", productCategory);
         if (productCategory.getId() == null) {
@@ -83,7 +79,6 @@ public class ProductCategoryResource {
      * @return the ResponseEntity with status 200 (OK) and the list of productCategories in body
      */
     @GetMapping("/product-categories")
-    @Timed
     public List<ProductCategory> getAllProductCategories() {
         log.debug("REST request to get all ProductCategories");
         return productCategoryService.findAll();
@@ -96,7 +91,6 @@ public class ProductCategoryResource {
      * @return the ResponseEntity with status 200 (OK) and with body the productCategory, or with status 404 (Not Found)
      */
     @GetMapping("/product-categories/{id}")
-    @Timed
     public ResponseEntity<ProductCategory> getProductCategory(@PathVariable Long id) {
         log.debug("REST request to get ProductCategory : {}", id);
         Optional<ProductCategory> productCategory = productCategoryService.findOne(id);
@@ -110,7 +104,6 @@ public class ProductCategoryResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/product-categories/{id}")
-    @Timed
     public ResponseEntity<Void> deleteProductCategory(@PathVariable Long id) {
         log.debug("REST request to delete ProductCategory : {}", id);
         productCategoryService.delete(id);

@@ -17,7 +17,7 @@ import { IProductOrder } from 'app/shared/model/product-order.model';
 export class ProductOrderResolve implements Resolve<IProductOrder> {
     constructor(private service: ProductOrderService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ProductOrder> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IProductOrder> {
         const id = route.params['id'] ? route.params['id'] : null;
         if (id) {
             return this.service.find(id).pipe(
@@ -31,7 +31,7 @@ export class ProductOrderResolve implements Resolve<IProductOrder> {
 
 export const productOrderRoute: Routes = [
     {
-        path: 'product-order',
+        path: '',
         component: ProductOrderComponent,
         resolve: {
             pagingParams: JhiResolvePagingParams
@@ -44,7 +44,7 @@ export const productOrderRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'product-order/:id/view',
+        path: ':id/view',
         component: ProductOrderDetailComponent,
         resolve: {
             productOrder: ProductOrderResolve
@@ -56,7 +56,7 @@ export const productOrderRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'product-order/new',
+        path: 'new',
         component: ProductOrderUpdateComponent,
         resolve: {
             productOrder: ProductOrderResolve
@@ -68,7 +68,7 @@ export const productOrderRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'product-order/:id/edit',
+        path: ':id/edit',
         component: ProductOrderUpdateComponent,
         resolve: {
             productOrder: ProductOrderResolve
@@ -83,7 +83,7 @@ export const productOrderRoute: Routes = [
 
 export const productOrderPopupRoute: Routes = [
     {
-        path: 'product-order/:id/delete',
+        path: ':id/delete',
         component: ProductOrderDeletePopupComponent,
         resolve: {
             productOrder: ProductOrderResolve
