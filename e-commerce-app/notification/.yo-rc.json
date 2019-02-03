@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.nukesz.store",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.7.2",
+    "applicationType": "microservice",
+    "baseName": "notification",
+    "packageName": "com.nukesz.store",
+    "packageFolder": "com/nukesz/store",
+    "serverPort": "8082",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YmRkNjRiNjRlNzFhOTIxYjFjNTFlMGVkMTg0YWM0ZWJkZjZlOGIwZjljZWFhMGQxYTE4OWFiODhhZTJkNmVkZjQ2ZDkxOGE2ZGZiN2ZmOGU1YjJlYTk4YjI5NTM2Nzc0MjJkNjRiMDc5MmZlMjcyM2NkMzEwZDNjOWU0MjY5Yzc=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "zh-tw"
+    ],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
