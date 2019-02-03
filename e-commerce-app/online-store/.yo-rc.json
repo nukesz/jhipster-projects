@@ -5,7 +5,7 @@
       "nativeLanguage": "en"
     },
     "jhipsterVersion": "5.8.1",
-    "applicationType": "monolith",
+    "applicationType": "gateway",
     "baseName": "store",
     "packageName": "com.nukesz.store",
     "packageFolder": "com/nukesz/store",
@@ -19,7 +19,7 @@
     "prodDatabaseType": "mysql",
     "searchEngine": false,
     "messageBroker": false,
-    "serviceDiscoveryType": false,
+    "serviceDiscoveryType": "eureka",
     "buildTool": "gradle",
     "enableSwaggerCodegen": false,
     "jwtSecretKey": "YTE2ZThmYThlNWZiYzcwOTQ4NGE4ODViNTNmYTYwZmNhYjEyZGEyZmE2Yzc5MDY2MWRmN2Y1ZjA1YmVlZWU4YTQ5Y2VhYjFhOWZhOGJkYWE1MmIwNGZlNzA0ZmIwNTdjZDdiYTZjZWU5OTRiZTMwODY3MDRlZTFlNWEyM2QxYjE=",
@@ -39,6 +39,8 @@
       "fr"
     ],
     "entitySuffix": "",
-    "dtoSuffix": "DTO"
+    "dtoSuffix": "DTO",
+    "herokuAppName": "nukesz-store",
+    "herokuDeployType": "git"
   }
 }
