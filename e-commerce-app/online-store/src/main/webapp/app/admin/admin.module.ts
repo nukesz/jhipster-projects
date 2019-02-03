@@ -18,6 +18,7 @@ import {
     JhiHealthCheckComponent,
     JhiConfigurationComponent,
     JhiDocsComponent,
+    JhiGatewayComponent,
     JhiTrackerComponent
 } from './';
 
@@ -38,6 +39,7 @@ import {
         JhiHealthCheckComponent,
         JhiHealthModalComponent,
         JhiDocsComponent,
+        JhiGatewayComponent,
         JhiTrackerComponent,
         JhiMetricsMonitoringComponent
     ],

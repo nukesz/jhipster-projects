@@ -19,6 +19,13 @@ logging:
         com.nukesz.store: INFO
         io.github.jhipster: INFO
 
+eureka:
+    instance:
+        prefer-ip-address: true
+    client:
+        service-url:
+            defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
+
 spring:
     devtools:
         restart:
@@ -61,6 +68,15 @@ spring:
         password:
     thymeleaf:
         cache: true
+    sleuth:
+        sampler:
+            probability: 1 # report 100% of traces
+    zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
+        base-url: http://localhost:9411
+        enabled: false
+        locator:
+            discovery:
+                enabled: true
 
 # ===================================================================
 # To enable TLS in production, generate a certificate using:
@@ -95,6 +111,11 @@ server:
 # ===================================================================
 
 jhipster:
+    gateway:
+        rate-limiting:
+            enabled: false
+        authorized-microservices-endpoints: # Access Control Policy, if left empty for a route, all endpoints will be accessible
+            app1: /api # recommended prod configuration
     http:
         version: V_1_1 # To use HTTP/2 you will need SSL support (see above the "server.ssl" configuration)
         cache: # Used by the CachingHttpHeadersFilter
