@@ -1,12 +1,13 @@
 package com.nukesz.store.web.rest;
 
 import com.nukesz.store.StoreApp;
-import com.nukesz.store.domain.Customer;
+
 import com.nukesz.store.domain.ProductOrder;
-import com.nukesz.store.domain.enumeration.OrderStatus;
+import com.nukesz.store.domain.Customer;
 import com.nukesz.store.repository.ProductOrderRepository;
 import com.nukesz.store.service.ProductOrderService;
 import com.nukesz.store.web.rest.errors.ExceptionTranslator;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +17,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -28,11 +28,14 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+
 import static com.nukesz.store.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import com.nukesz.store.domain.enumeration.OrderStatus;
 /**
  * Test class for the ProductOrderResource REST controller.
  *
@@ -40,7 +43,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = StoreApp.class)
-@WithMockUser(username="admin", authorities={"ROLE_ADMIN"}, password = "admin")
 public class ProductOrderResourceIntTest {
 
     private static final Instant DEFAULT_PLACED_DATE = Instant.ofEpochMilli(0L);
@@ -51,6 +53,9 @@ public class ProductOrderResourceIntTest {
 
     private static final String DEFAULT_CODE = "AAAAAAAAAA";
     private static final String UPDATED_CODE = "BBBBBBBBBB";
+
+    private static final Long DEFAULT_INVOICE_ID = 1L;
+    private static final Long UPDATED_INVOICE_ID = 2L;
 
     @Autowired
     private ProductOrderRepository productOrderRepository;
@@ -99,7 +104,8 @@ public class ProductOrderResourceIntTest {
         ProductOrder productOrder = new ProductOrder()
             .placedDate(DEFAULT_PLACED_DATE)
             .status(DEFAULT_STATUS)
-            .code(DEFAULT_CODE);
+            .code(DEFAULT_CODE)
+            .invoiceId(DEFAULT_INVOICE_ID);
         // Add required entity
         Customer customer = CustomerResourceIntTest.createEntity(em);
         em.persist(customer);
@@ -131,6 +137,7 @@ public class ProductOrderResourceIntTest {
         assertThat(testProductOrder.getPlacedDate()).isEqualTo(DEFAULT_PLACED_DATE);
         assertThat(testProductOrder.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testProductOrder.getCode()).isEqualTo(DEFAULT_CODE);
+        assertThat(testProductOrder.getInvoiceId()).isEqualTo(DEFAULT_INVOICE_ID);
     }
 
     @Test
@@ -219,7 +226,8 @@ public class ProductOrderResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(productOrder.getId().intValue())))
             .andExpect(jsonPath("$.[*].placedDate").value(hasItem(DEFAULT_PLACED_DATE.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
-            .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())));
+            .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
+            .andExpect(jsonPath("$.[*].invoiceId").value(hasItem(DEFAULT_INVOICE_ID.intValue())));
     }
     
     @Test
@@ -235,7 +243,8 @@ public class ProductOrderResourceIntTest {
             .andExpect(jsonPath("$.id").value(productOrder.getId().intValue()))
             .andExpect(jsonPath("$.placedDate").value(DEFAULT_PLACED_DATE.toString()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
-            .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()));
+            .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
+            .andExpect(jsonPath("$.invoiceId").value(DEFAULT_INVOICE_ID.intValue()));
     }
 
     @Test
@@ -261,7 +270,8 @@ public class ProductOrderResourceIntTest {
         updatedProductOrder
             .placedDate(UPDATED_PLACED_DATE)
             .status(UPDATED_STATUS)
-            .code(UPDATED_CODE);
+            .code(UPDATED_CODE)
+            .invoiceId(UPDATED_INVOICE_ID);
 
         restProductOrderMockMvc.perform(put("/api/product-orders")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -275,6 +285,7 @@ public class ProductOrderResourceIntTest {
         assertThat(testProductOrder.getPlacedDate()).isEqualTo(UPDATED_PLACED_DATE);
         assertThat(testProductOrder.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testProductOrder.getCode()).isEqualTo(UPDATED_CODE);
+        assertThat(testProductOrder.getInvoiceId()).isEqualTo(UPDATED_INVOICE_ID);
     }
 
     @Test

@@ -22,6 +22,10 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "invoiceId",
+            "fieldType": "Long"
         }
     ],
     "relationships": [
@@ -32,17 +36,12 @@
             "otherEntityRelationshipName": "order"
         },
         {
-            "relationshipType": "one-to-many",
-            "relationshipName": "invoice",
-            "otherEntityName": "invoice",
-            "otherEntityRelationshipName": "order"
-        },
-        {
             "relationshipType": "many-to-one",
             "relationshipValidateRules": "required",
             "relationshipName": "customer",
             "otherEntityName": "customer",
-            "otherEntityField": "email"
+            "otherEntityField": "email",
+            "otherEntityRelationshipName": "order"
         }
     ],
     "changelogDate": "20190127172719",

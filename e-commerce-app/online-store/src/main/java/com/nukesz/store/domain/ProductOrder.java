@@ -44,12 +44,12 @@ public class ProductOrder implements Serializable {
     @Column(name = "code", nullable = false)
     private String code;
 
+    @Column(name = "invoice_id")
+    private Long invoiceId;
+
     @OneToMany(mappedBy = "order")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<OrderItem> orderItems = new HashSet<>();
-    @OneToMany(mappedBy = "order")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Invoice> invoices = new HashSet<>();
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties("orders")
@@ -103,6 +103,19 @@ public class ProductOrder implements Serializable {
         this.code = code;
     }
 
+    public Long getInvoiceId() {
+        return invoiceId;
+    }
+
+    public ProductOrder invoiceId(Long invoiceId) {
+        this.invoiceId = invoiceId;
+        return this;
+    }
+
+    public void setInvoiceId(Long invoiceId) {
+        this.invoiceId = invoiceId;
+    }
+
     public Set<OrderItem> getOrderItems() {
         return orderItems;
     }
@@ -126,31 +139,6 @@ public class ProductOrder implements Serializable {
 
     public void setOrderItems(Set<OrderItem> orderItems) {
         this.orderItems = orderItems;
-    }
-
-    public Set<Invoice> getInvoices() {
-        return invoices;
-    }
-
-    public ProductOrder invoices(Set<Invoice> invoices) {
-        this.invoices = invoices;
-        return this;
-    }
-
-    public ProductOrder addInvoice(Invoice invoice) {
-        this.invoices.add(invoice);
-        invoice.setOrder(this);
-        return this;
-    }
-
-    public ProductOrder removeInvoice(Invoice invoice) {
-        this.invoices.remove(invoice);
-        invoice.setOrder(null);
-        return this;
-    }
-
-    public void setInvoices(Set<Invoice> invoices) {
-        this.invoices = invoices;
     }
 
     public Customer getCustomer() {
@@ -194,6 +182,7 @@ public class ProductOrder implements Serializable {
             ", placedDate='" + getPlacedDate() + "'" +
             ", status='" + getStatus() + "'" +
             ", code='" + getCode() + "'" +
+            ", invoiceId=" + getInvoiceId() +
             "}";
     }
 }

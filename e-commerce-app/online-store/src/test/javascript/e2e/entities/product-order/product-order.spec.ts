@@ -43,10 +43,12 @@ describe('ProductOrder e2e test', () => {
             productOrderUpdatePage.setPlacedDateInput('01/01/2001' + protractor.Key.TAB + '02:30AM'),
             productOrderUpdatePage.statusSelectLastOption(),
             productOrderUpdatePage.setCodeInput('code'),
+            productOrderUpdatePage.setInvoiceIdInput('5'),
             productOrderUpdatePage.customerSelectLastOption(),
         ]);
         expect(await productOrderUpdatePage.getPlacedDateInput()).to.contain('2001-01-01T02:30');
         expect(await productOrderUpdatePage.getCodeInput()).to.eq('code');
+        expect(await productOrderUpdatePage.getInvoiceIdInput()).to.eq('5');
         await productOrderUpdatePage.save();
         expect(await productOrderUpdatePage.getSaveButton().isPresent()).to.be.false;
 

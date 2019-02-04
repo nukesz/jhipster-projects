@@ -29,7 +29,7 @@ const ENTITY_STATES = [...invoiceRoute, ...invoicePopupRoute];
     providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class StoreInvoiceModule {
+export class InvoiceInvoiceModule {
     constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
         this.languageHelper.language.subscribe((languageKey: string) => {
             if (languageKey !== undefined) {

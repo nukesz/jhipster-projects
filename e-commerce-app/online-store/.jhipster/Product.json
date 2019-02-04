@@ -41,7 +41,8 @@
             "relationshipValidateRules": "required",
             "relationshipName": "productCategory",
             "otherEntityName": "productCategory",
-            "otherEntityField": "name"
+            "otherEntityField": "name",
+            "otherEntityRelationshipName": "product"
         }
     ],
     "changelogDate": "20190127172716",

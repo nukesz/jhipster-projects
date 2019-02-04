@@ -33,7 +33,6 @@ export class InvoiceUpdatePage {
     paymentDateInput = element(by.id('field_paymentDate'));
     paymentAmountInput = element(by.id('field_paymentAmount'));
     codeInput = element(by.id('field_code'));
-    orderSelect = element(by.id('field_order'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -107,25 +106,6 @@ export class InvoiceUpdatePage {
 
     async getCodeInput() {
         return this.codeInput.getAttribute('value');
-    }
-
-    async orderSelectLastOption() {
-        await this.orderSelect
-            .all(by.tagName('option'))
-            .last()
-            .click();
-    }
-
-    async orderSelectOption(option) {
-        await this.orderSelect.sendKeys(option);
-    }
-
-    getOrderSelect(): ElementFinder {
-        return this.orderSelect;
-    }
-
-    async getOrderSelectedOption() {
-        return this.orderSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

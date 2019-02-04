@@ -34,6 +34,10 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="invoice_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <column name="customer_id" type="bigint">
                 <constraints nullable="false" />
             </column>

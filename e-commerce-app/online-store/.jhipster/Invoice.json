@@ -56,13 +56,6 @@
             "relationshipName": "shipment",
             "otherEntityName": "shipment",
             "otherEntityRelationshipName": "invoice"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "relationshipValidateRules": "required",
-            "relationshipName": "order",
-            "otherEntityName": "productOrder",
-            "otherEntityField": "code"
         }
     ],
     "changelogDate": "20190127172721",
@@ -73,5 +66,6 @@
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",
-    "applications": "*"
+    "applications": "*",
+    "microserviceName": "invoice"
 }

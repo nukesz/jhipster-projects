@@ -34,14 +34,16 @@
             "relationshipValidateRules": "required",
             "relationshipName": "product",
             "otherEntityName": "product",
-            "otherEntityField": "name"
+            "otherEntityField": "name",
+            "otherEntityRelationshipName": "orderItem"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipValidateRules": "required",
             "relationshipName": "order",
             "otherEntityName": "productOrder",
-            "otherEntityField": "code"
+            "otherEntityField": "code",
+            "otherEntityRelationshipName": "orderItem"
         }
     ],
     "changelogDate": "20190127172720",

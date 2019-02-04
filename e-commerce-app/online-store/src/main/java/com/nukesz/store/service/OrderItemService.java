@@ -2,9 +2,6 @@ package com.nukesz.store.service;
 
 import com.nukesz.store.domain.OrderItem;
 import com.nukesz.store.repository.OrderItemRepository;
-import com.nukesz.store.security.AuthoritiesConstants;
-import com.nukesz.store.security.SecurityUtils;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,15 +47,9 @@ public class OrderItemService {
     @Transactional(readOnly = true)
     public Page<OrderItem> findAll(Pageable pageable) {
         log.debug("Request to get all OrderItems");
-        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
-            return orderItemRepository.findAll(pageable);
-        } else {
-            return orderItemRepository.findAllByOrderCustomerUserLogin(
-                SecurityUtils.getCurrentUserLogin().get(),
-                pageable
-            );
-        }
+        return orderItemRepository.findAll(pageable);
     }
+
 
     /**
      * Get one orderItem by id.
@@ -69,11 +60,7 @@ public class OrderItemService {
     @Transactional(readOnly = true)
     public Optional<OrderItem> findOne(Long id) {
         log.debug("Request to get OrderItem : {}", id);
-        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
-            return orderItemRepository.findById(id);
-        } else {
-            return orderItemRepository.findByIdAndOrderCustomerUserLogin(id, SecurityUtils.getCurrentUserLogin().get());
-        }
+        return orderItemRepository.findById(id);
     }
 
     /**

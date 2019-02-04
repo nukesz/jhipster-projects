@@ -2,9 +2,6 @@ package com.nukesz.store.service;
 
 import com.nukesz.store.domain.ProductOrder;
 import com.nukesz.store.repository.ProductOrderRepository;
-import com.nukesz.store.security.AuthoritiesConstants;
-import com.nukesz.store.security.SecurityUtils;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,14 +47,7 @@ public class ProductOrderService {
     @Transactional(readOnly = true)
     public Page<ProductOrder> findAll(Pageable pageable) {
         log.debug("Request to get all ProductOrders");
-        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
-            return productOrderRepository.findAll(pageable);
-        } else {
-            return productOrderRepository.findAllByCustomerUserLogin(
-                SecurityUtils.getCurrentUserLogin().get(),
-                pageable
-            );
-        }
+        return productOrderRepository.findAll(pageable);
     }
 
 
@@ -70,11 +60,7 @@ public class ProductOrderService {
     @Transactional(readOnly = true)
     public Optional<ProductOrder> findOne(Long id) {
         log.debug("Request to get ProductOrder : {}", id);
-        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
-            return productOrderRepository.findById(id);
-        } else {
-            return productOrderRepository.findByIdAndCustomerUserLogin(id, SecurityUtils.getCurrentUserLogin().get());
-        }
+        return productOrderRepository.findById(id);
     }
 
     /**

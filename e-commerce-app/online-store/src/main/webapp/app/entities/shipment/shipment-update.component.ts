@@ -8,8 +8,8 @@ import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiAlertService } from 'ng-jhipster';
 import { IShipment } from 'app/shared/model/shipment.model';
 import { ShipmentService } from './shipment.service';
-import { IInvoice } from 'app/shared/model/invoice.model';
-import { InvoiceService } from 'app/entities/invoice';
+import { IInvoice } from 'app/shared/model/invoice/invoice.model';
+import { InvoiceService } from 'app/entities/invoice/invoice';
 
 @Component({
     selector: 'jhi-shipment-update',

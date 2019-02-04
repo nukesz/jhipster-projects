@@ -29,6 +29,7 @@ export class ProductOrderUpdatePage {
     placedDateInput = element(by.id('field_placedDate'));
     statusSelect = element(by.id('field_status'));
     codeInput = element(by.id('field_code'));
+    invoiceIdInput = element(by.id('field_invoiceId'));
     customerSelect = element(by.id('field_customer'));
 
     async getPageTitle() {
@@ -64,6 +65,14 @@ export class ProductOrderUpdatePage {
 
     async getCodeInput() {
         return this.codeInput.getAttribute('value');
+    }
+
+    async setInvoiceIdInput(invoiceId) {
+        await this.invoiceIdInput.sendKeys(invoiceId);
+    }
+
+    async getInvoiceIdInput() {
+        return this.invoiceIdInput.getAttribute('value');
     }
 
     async customerSelectLastOption() {
