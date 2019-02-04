@@ -7,41 +7,41 @@ import { map } from 'rxjs/operators';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
-import { IInvoice } from 'app/shared/model/invoice.model';
+import { INotification } from 'app/shared/model/notification.model';
 
-type EntityResponseType = HttpResponse<IInvoice>;
-type EntityArrayResponseType = HttpResponse<IInvoice[]>;
+type EntityResponseType = HttpResponse<INotification>;
+type EntityArrayResponseType = HttpResponse<INotification[]>;
 
 @Injectable({ providedIn: 'root' })
-export class InvoiceService {
-    public resourceUrl = SERVER_API_URL + 'api/invoices';
+export class NotificationService {
+    public resourceUrl = SERVER_API_URL + 'notification/api/notifications';
 
     constructor(protected http: HttpClient) {}
 
-    create(invoice: IInvoice): Observable<EntityResponseType> {
-        const copy = this.convertDateFromClient(invoice);
+    create(notification: INotification): Observable<EntityResponseType> {
+        const copy = this.convertDateFromClient(notification);
         return this.http
-            .post<IInvoice>(this.resourceUrl, copy, { observe: 'response' })
+            .post<INotification>(this.resourceUrl, copy, { observe: 'response' })
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
 
-    update(invoice: IInvoice): Observable<EntityResponseType> {
-        const copy = this.convertDateFromClient(invoice);
+    update(notification: INotification): Observable<EntityResponseType> {
+        const copy = this.convertDateFromClient(notification);
         return this.http
-            .put<IInvoice>(this.resourceUrl, copy, { observe: 'response' })
+            .put<INotification>(this.resourceUrl, copy, { observe: 'response' })
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
 
     find(id: number): Observable<EntityResponseType> {
         return this.http
-            .get<IInvoice>(`${this.resourceUrl}/${id}`, { observe: 'response' })
+            .get<INotification>(`${this.resourceUrl}/${id}`, { observe: 'response' })
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
 
     query(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);
         return this.http
-            .get<IInvoice[]>(this.resourceUrl, { params: options, observe: 'response' })
+            .get<INotification[]>(this.resourceUrl, { params: options, observe: 'response' })
             .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
     }
 
@@ -49,10 +49,10 @@ export class InvoiceService {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
 
-    protected convertDateFromClient(invoice: IInvoice): IInvoice {
-        const copy: IInvoice = Object.assign({}, invoice, {
-            date: invoice.date != null && invoice.date.isValid() ? invoice.date.toJSON() : null,
-            paymentDate: invoice.paymentDate != null && invoice.paymentDate.isValid() ? invoice.paymentDate.toJSON() : null
+    protected convertDateFromClient(notification: INotification): INotification {
+        const copy: INotification = Object.assign({}, notification, {
+            date: notification.date != null && notification.date.isValid() ? notification.date.toJSON() : null,
+            sentDate: notification.sentDate != null && notification.sentDate.isValid() ? notification.sentDate.toJSON() : null
         });
         return copy;
     }
@@ -60,16 +60,16 @@ export class InvoiceService {
     protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
         if (res.body) {
             res.body.date = res.body.date != null ? moment(res.body.date) : null;
-            res.body.paymentDate = res.body.paymentDate != null ? moment(res.body.paymentDate) : null;
+            res.body.sentDate = res.body.sentDate != null ? moment(res.body.sentDate) : null;
         }
         return res;
     }
 
     protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
         if (res.body) {
-            res.body.forEach((invoice: IInvoice) => {
-                invoice.date = invoice.date != null ? moment(invoice.date) : null;
-                invoice.paymentDate = invoice.paymentDate != null ? moment(invoice.paymentDate) : null;
+            res.body.forEach((notification: INotification) => {
+                notification.date = notification.date != null ? moment(notification.date) : null;
+                notification.sentDate = notification.sentDate != null ? moment(notification.sentDate) : null;
             });
         }
         return res;

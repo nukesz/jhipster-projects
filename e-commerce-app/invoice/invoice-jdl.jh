@@ -1,4 +1,3 @@
-microservice Invoice, Shipment with Invoice
 
 entity Invoice {
     date Instant required,
@@ -9,25 +8,21 @@ entity Invoice {
     paymentAmount BigDecimal required,
     code String required
 }
-
+enum InvoiceStatus {
+    PAID, ISSUED, CANCELLED
+}
 entity Shipment {
     trackingCode String,
     date Instant required,
     details String
 }
-
-enum InvoiceStatus {
-    PAID, ISSUED, CANCELLED
-}
-
 enum PaymentMethod {
     CREDIT_CARD, CASH_ON_DELIVERY, PAYPAL
 }
-
 relationship OneToMany {
     Invoice{shipment} to Shipment{invoice}
 }
-
 service * with serviceClass
 paginate Invoice, Shipment with pagination
-microservice * with invoice
+microservice Invoice with Invoice
+microservice Shipment with Invoice

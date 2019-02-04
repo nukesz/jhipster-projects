@@ -34,5 +34,5 @@
     "fluentMethods": true,
     "clientRootFolder": "invoice",
     "applications": "*",
-    "microserviceName": "invoice"
+    "microserviceName": "Invoice"
 }

@@ -9,7 +9,7 @@ import { JhiAlertService } from 'ng-jhipster';
 import { IShipment } from 'app/shared/model/shipment.model';
 import { ShipmentService } from './shipment.service';
 import { IInvoice } from 'app/shared/model/invoice.model';
-import { InvoiceService } from 'app/entities/invoice/invoice.service';
+import { InvoiceService } from 'app/entities/invoice';
 
 @Component({
     selector: 'jhi-shipment-update',

@@ -5,31 +5,36 @@ import { JhiLanguageHelper } from 'app/core';
 
 import { StoreSharedModule } from 'app/shared';
 import {
-    InvoiceComponent,
-    InvoiceDetailComponent,
-    InvoiceUpdateComponent,
-    InvoiceDeletePopupComponent,
-    InvoiceDeleteDialogComponent,
-    invoiceRoute,
-    invoicePopupRoute
+    NotificationComponent,
+    NotificationDetailComponent,
+    NotificationUpdateComponent,
+    NotificationDeletePopupComponent,
+    NotificationDeleteDialogComponent,
+    notificationRoute,
+    notificationPopupRoute
 } from './';
 
-const ENTITY_STATES = [...invoiceRoute, ...invoicePopupRoute];
+const ENTITY_STATES = [...notificationRoute, ...notificationPopupRoute];
 
 @NgModule({
     imports: [StoreSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
-        InvoiceComponent,
-        InvoiceDetailComponent,
-        InvoiceUpdateComponent,
-        InvoiceDeleteDialogComponent,
-        InvoiceDeletePopupComponent
+        NotificationComponent,
+        NotificationDetailComponent,
+        NotificationUpdateComponent,
+        NotificationDeleteDialogComponent,
+        NotificationDeletePopupComponent
     ],
-    entryComponents: [InvoiceComponent, InvoiceUpdateComponent, InvoiceDeleteDialogComponent, InvoiceDeletePopupComponent],
+    entryComponents: [
+        NotificationComponent,
+        NotificationUpdateComponent,
+        NotificationDeleteDialogComponent,
+        NotificationDeletePopupComponent
+    ],
     providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class StoreInvoiceModule {
+export class NotificationNotificationModule {
     constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
         this.languageHelper.language.subscribe((languageKey: string) => {
             if (languageKey !== undefined) {

@@ -6,9 +6,7 @@ entity Notification {
     userId Long required
     productId Long required
 }
-
 enum NotificationType {
     EMAIL, SMS, PARCEL
 }
-
-microservice * with notification
+microservice * with Notification

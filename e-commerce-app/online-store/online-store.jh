@@ -65,7 +65,7 @@ relationship OneToOne {
 relationship OneToMany {
     ProductCategory{product} to Product{productCategory(name) required},
     Customer{order} to ProductOrder{customer(email) required},
-    ProductOrder{orderItem} to OrderItem{order(code) required},
+    ProductOrder{orderItem} to OrderItem{order(code) required}
 }
 
 relationship ManyToOne {

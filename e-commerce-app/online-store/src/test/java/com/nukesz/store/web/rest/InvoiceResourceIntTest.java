@@ -1,13 +1,12 @@
 package com.nukesz.store.web.rest;
 
 import com.nukesz.store.StoreApp;
+
 import com.nukesz.store.domain.Invoice;
-import com.nukesz.store.domain.ProductOrder;
-import com.nukesz.store.domain.enumeration.InvoiceStatus;
-import com.nukesz.store.domain.enumeration.PaymentMethod;
 import com.nukesz.store.repository.InvoiceRepository;
 import com.nukesz.store.service.InvoiceService;
 import com.nukesz.store.web.rest.errors.ExceptionTranslator;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -30,11 +28,15 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+
 import static com.nukesz.store.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import com.nukesz.store.domain.enumeration.InvoiceStatus;
+import com.nukesz.store.domain.enumeration.PaymentMethod;
 /**
  * Test class for the InvoiceResource REST controller.
  *
@@ -42,7 +44,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = StoreApp.class)
-@WithMockUser(username="admin", authorities={"ROLE_ADMIN"}, password = "admin")
 public class InvoiceResourceIntTest {
 
     private static final Instant DEFAULT_DATE = Instant.ofEpochMilli(0L);
@@ -118,11 +119,6 @@ public class InvoiceResourceIntTest {
             .paymentDate(DEFAULT_PAYMENT_DATE)
             .paymentAmount(DEFAULT_PAYMENT_AMOUNT)
             .code(DEFAULT_CODE);
-        // Add required entity
-        ProductOrder productOrder = ProductOrderResourceIntTest.createEntity(em);
-        em.persist(productOrder);
-        em.flush();
-        invoice.setOrder(productOrder);
         return invoice;
     }
 

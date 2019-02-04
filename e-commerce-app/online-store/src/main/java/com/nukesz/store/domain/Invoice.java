@@ -2,7 +2,6 @@ package com.nukesz.store.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -66,11 +65,6 @@ public class Invoice implements Serializable {
     @OneToMany(mappedBy = "invoice")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Shipment> shipments = new HashSet<>();
-    @ManyToOne(optional = false)
-    @NotNull
-    @JsonIgnoreProperties("invoices")
-    private ProductOrder order;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -194,19 +188,6 @@ public class Invoice implements Serializable {
 
     public void setShipments(Set<Shipment> shipments) {
         this.shipments = shipments;
-    }
-
-    public ProductOrder getOrder() {
-        return order;
-    }
-
-    public Invoice order(ProductOrder productOrder) {
-        this.order = productOrder;
-        return this;
-    }
-
-    public void setOrder(ProductOrder productOrder) {
-        this.order = productOrder;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -52,5 +52,5 @@
     "fluentMethods": true,
     "clientRootFolder": "",
     "applications": "*",
-    "microserviceName": "notification"
+    "microserviceName": "Notification"
 }
