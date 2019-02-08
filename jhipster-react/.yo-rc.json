@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.nukesz.react",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.7.2",
+    "applicationType": "monolith",
+    "baseName": "jhreact",
+    "packageName": "com.nukesz.react",
+    "packageFolder": "com/nukesz/react",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YjFjMmI0MDdkZjZhMzI4NTcxMzU3YWZkYmViY2M5M2JmZWExMjM1YWViOGYwZDdhOTcxOTMxZjYzNzcyOWZkZDE2NDkwYzIxODM5ZTFiODQ0MWNkMDk1YzA1ODNhMzg1YjBmNjNiNTkyZDhkNmY4MGY2NjE4NTI4NjJjMDNjOGM=",
+    "clientFramework": "react",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "zh-cn"
+    ]
+  }
+}
