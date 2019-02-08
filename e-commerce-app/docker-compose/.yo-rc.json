@@ -1,0 +1,18 @@
+{
+  "generator-jhipster": {
+    "appsFolders": [
+      "invoice",
+      "notification",
+      "online-store"
+    ],
+    "directoryPath": "../",
+    "gatewayType": "zuul",
+    "clusteredDbApps": [],
+    "monitoring": "elk",
+    "consoleOptions": [
+      "zipkin"
+    ],
+    "serviceDiscoveryType": "eureka",
+    "jwtSecretKey": "YzhkOTVkZWIxYTU4Y2Q5YmMyYzhiNzVmMTBjYTgyMzc4MGE3ODU5NWQwODQ5MjEyYTBjYjIwZjdlMjQ4NGYxMjkzMmViNjZhZWNiYTJhODZjYzM3NWMyMDc0ZjZkNTVjNWRhMQ=="
+  }
+}
